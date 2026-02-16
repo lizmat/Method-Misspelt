@@ -10,11 +10,14 @@ SYNOPSIS
 
 ```raku
 use Method::Misspelt;
+
+# handle underscore mixups
 class Foo does Method::Misspelt {
     method foo-bar() { "foobar" }
 }
 say Foo.foo_bar;  # foobar
 
+# handle case mixups
 class Bar does Method::Misspelt[:mangler(*.lc)] {
     method foo-baz() { "foobaz" }
 }
@@ -29,6 +32,8 @@ DESCRIPTION
 The `Method::Misspelt` distribution provides a `Method::Misspelt` role that allows a class to efficiently allow for non-existing methods being called that could be considered a misspelling of another method in that class.
 
 It is only partly serious: it serves mostly as an example of what is possible with a [`FALLBACK` method](https://docs.raku.org/language/typesystem#Fallback_method) in a class.
+
+By default, the `Method::Misspelt` role will change any underscores to hyphens in method names that could not be found. The role can be parameterized with the `:mangler` named argument in the parameterization which should provide a `Callable` that takes a single argument, and which will return the name of the method that should be tried instead.
 
 METHODS
 =======

@@ -3,6 +3,8 @@
   "authors": [
     "Elizabeth Mattijsen"
   ],
+  "build-depends": [
+  ],
   "depends": [
   ],
   "description": "allow for misspelled method calls",
@@ -12,6 +14,9 @@
     "Method::Misspelt": "lib/Method/Misspelt.rakumod"
   },
   "raku": "6.d",
+  "resources": [
+  ],
+  "source-url": "https://github.com/lizmat/Method-Misspelt.git",
   "support": {
     "bugtracker": "https://github.com/lizmat/Method-Misspelt/issues",
     "email": "liz@raku.rocks",
@@ -20,6 +25,8 @@
   "tags": [
     "METHOD",
     "FALLBACK"
+  ],
+  "test-depends": [
   ],
   "version": "0.0.1"
 }

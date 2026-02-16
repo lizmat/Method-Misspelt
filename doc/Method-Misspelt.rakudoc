@@ -7,13 +7,15 @@ Method::Misspelt - allow for misspelled method calls
 =head1 SYNOPSIS
 
 =begin code :lang<raku>
-
 use Method::Misspelt;
+
+# handle underscore mixups
 class Foo does Method::Misspelt {
     method foo-bar() { "foobar" }
 }
 say Foo.foo_bar;  # foobar
 
+# handle case mixups
 class Bar does Method::Misspelt[:mangler(*.lc)] {
     method foo-baz() { "foobaz" }
 }
@@ -33,6 +35,12 @@ class.
 It is only partly serious: it serves mostly as an example of what is
 possible with a L<C<FALLBACK> method|https://docs.raku.org/language/typesystem#Fallback_method>
 in a class.
+
+By default, the C<Method::Misspelt> role will change any underscores
+to hyphens in method names that could not be found.  The role can be
+parameterized with the C<:mangler> named argument in the parameterization
+which should provide a C<Callable> that takes a single argument, and
+which will return the name of the method that should be tried instead.
 
 =head1 METHODS
 
