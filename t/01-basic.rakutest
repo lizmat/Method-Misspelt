@@ -1,0 +1,40 @@
+use Test;
+use Method::Misspelt;
+
+plan 16;
+
+class A does Method::Misspelt {
+    method foo-bar() { "foobar" }
+}
+
+for A, A.new -> $self {
+    is $self.foo-bar, "foobar", 'A calling the actual method';
+    is $self.foo_bar, "foobar", 'A calling the misspelt method';
+    is $self.foo_bar, "foobar", 'A calling misspelt at another callsite';
+}
+
+is-deeply A.misspelt, Map.new(foo_bar => "foo-bar"),
+  "check A statistics";
+throws-like { A.zippo }, X::Method::NotFound,
+  typename => "A",
+  method   => "zippo",
+  'A check handlin of real method not found';
+
+class B does Method::Misspelt[:mangler(*.lc)] {
+    method foo-baz() { "foobaz" }
+}
+
+for B, B.new -> $self {
+    is $self.foo-baz, "foobaz", 'B calling the actual method';
+    is $self.FOO-baz, "foobaz", 'B calling the misspelt method';
+    is $self.FOO-baz, "foobaz", 'B calling misspelt at another callsite';
+}
+
+is-deeply B.misspelt, Map.new(FOO-baz => "foo-baz"),
+  "check B statistics";
+throws-like { B.zappo }, X::Method::NotFound,
+  typename => "B",
+  method   => "zappo",
+  'B check handling of real method not found';
+
+# vim: expandtab shiftwidth=4

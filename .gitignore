@@ -1,0 +1,4 @@
+.precomp/
+/Method-Misspelt-*
+/releases/
+*.rakucov

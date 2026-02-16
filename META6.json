@@ -1,0 +1,25 @@
+{
+  "auth": "zef:lizmat",
+  "authors": [
+    "Elizabeth Mattijsen"
+  ],
+  "depends": [
+  ],
+  "description": "allow for misspelled method calls",
+  "license": "Artistic-2.0",
+  "name": "Method::Misspelt",
+  "provides": {
+    "Method::Misspelt": "lib/Method/Misspelt.rakumod"
+  },
+  "raku": "6.d",
+  "support": {
+    "bugtracker": "https://github.com/lizmat/Method-Misspelt/issues",
+    "email": "liz@raku.rocks",
+    "source": "https://github.com/lizmat/Method-Misspelt.git"
+  },
+  "tags": [
+    "METHOD",
+    "FALLBACK"
+  ],
+  "version": "0.0.1"
+}
