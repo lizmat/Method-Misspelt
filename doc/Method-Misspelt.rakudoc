@@ -16,7 +16,7 @@ class Foo does Method::Misspelt {
 say Foo.foo_bar;  # foobar
 
 # handle case mixups
-class Bar does Method::Misspelt[:mangler(*.lc)] {
+class Bar does Method::Misspelt[:mangler(*.lc), :!END] {
     method foo-baz() { "foobaz" }
 }
 say Bar.FOO-baz;  # foobaz
@@ -41,6 +41,10 @@ to hyphens in method names that could not be found.  The role can be
 parameterized with the C<:mangler> named argument in the parameterization
 which should provide a C<Callable> that takes a single argument, and
 which will return the name of the method that should be tried instead.
+
+Also by default a report about misspelled method calls will be printed
+on STDERR when the program is done.  This can be prevented by specifying
+the C<:!END> named argument in the parameterization.
 
 =head1 METHODS
 
