@@ -1,6 +1,8 @@
 Revision history for Method::Misspelt
 
 {{$NEXT}}
+
+0.0.2  2026-02-17T15:01:34+01:00
     - Fix some role / variable scoping issues
     - Print report of mispelled calls at END
     - Add :END parameterization argument to prevent END
